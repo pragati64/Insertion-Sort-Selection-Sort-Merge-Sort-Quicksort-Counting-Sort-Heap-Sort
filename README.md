@@ -249,3 +249,212 @@ int main()
     cout << "Sorted array is \n"; 
     printArray(arr, n); 
 }
+            
+            
+#by python
+   
+#insertin short
+            
+            def insertion_sort(array):
+for i in range(len(array)):
+        for j in range(0,i+1):
+            if array[i] < array[j]:
+                array[i],array[j] = array[j] ,array[i]
+    for val in array:
+        print(val,end = " ")
+print("Enter elements into the array")
+array = [int(n) for n in input().split()]
+insertion_sort(array)
+   
+   #selection short
+   
+   def selection_sort(array):
+    sorted_array = []
+    #Initializing the second array with spaces in it
+    for i in range(len(array)):
+        sorted_array.append(" ")
+    for i in range(len(array)):
+        #Take minimum element in the array
+        ele = min(array)
+        #taking the index of the minimum element
+        index = array.index(min(array))
+        #Removing the minimum element in the array
+        del array[index]
+        #Adding the minimum element to second array
+        sorted_array[i] = ele
+        print("Elements After Sorting")
+        for val in sorted_array:
+            print(val,end = " ")
+print("Enter elements into array")
+array = [int(n) for n in input().split()]
+selection_sort(array)
+   
+   #quickshort
+   
+   def quick_sort(arr,first_index,last_index):
+    if first_index < last_index:
+                                
+  #heapshort
+                                
+                       
+ def heapify(nums, heap_size, root_index):
+    
+    largest = root_index
+    left_child = (2 * root_index) + 1
+    right_child = (2 * root_index) + 2
+
+   
+    if left_child < heap_size and nums[left_child] > nums[largest]:
+        largest = left_child
+
+  
+    if right_child < heap_size and nums[right_child] > nums[largest]:
+        largest = right_child
+
+    
+    if largest != root_index:
+        nums[root_index], nums[largest] = nums[largest], nums[root_index]
+        # Heapify the new root element to ensure it's the largest
+        heapify(nums, heap_size, largest)
+
+
+def heap_sort(nums):
+    n = len(nums)
+
+    
+    for i in range(n, -1, -1):
+        heapify(nums, n, i)
+
+    # Move the root of the max heap to the end of
+    for i in range(n - 1, 0, -1):
+        nums[i], nums[0] = nums[0], nums[i]
+        heapify(nums, i, 0)
+
+
+
+random_list_of_nums = [35, 12, 43, 8, 51]
+heap_sort(random_list_of_nums)
+print(random_list_of_nums)                 
+        
+         pivot = first_index
+         i = first_index + 1
+         j = last_index
+         while i < j:
+           #Incrementing i till element is greater than element at pivot
+           while arr[i] < arr[pivot] and i < last_index:
+                 i+=1
+        
+           #Decrementing j till element is less than element at pivot
+           while arr[j] > arr[pivot]:
+                 j-=1
+           if i < j:
+                 arr[i], arr[j] = arr[j],arr[i]
+         arr[pivot], arr[j] = arr[j],arr[pivot]
+         
+         #Sorting Elements Before Swaping the pivot elements
+         quick_sort(arr,first_index,j-1)
+         quick_sort(arr,j+1,last_index)
+print("Enter size of array")
+N = int(input())
+print("Enter Elements into the array")
+arr = [int(n) for n in input().split()]
+quick_sort(arr,0,N-1)
+print("Elements After Sorting")
+for i in range(N):
+    print(arr[i],end=" ")
+                    
+  #mergeshort
+ 
+ def mergeSort(array, low, mid, high): 
+    n1 = mid - low + 1
+    n2 = high - mid 
+  
+    # create temp arrays 
+    arr1 = [0] * (n1) 
+    arr2 = [0] * (n2) 
+  
+    # Copy data to temp arrays arr1[] and arr2[] 
+    for i in range(0 , n1): 
+        arr1[i] = array[low + i] 
+  
+    for j in range(0 , n2): 
+        arr2[j] = array[mid + 1 + j] 
+  
+    # Merge the temp arrays back into arr[l..r] 
+    i = 0     # Initial index of first subarray 
+    j = 0     # Initial index of second subarray 
+    k = low   # Initial index of merged subarray 
+  
+    while i < n1 and j < n2 : 
+        if arr1[i] <= arr2[j]: 
+            array[k] = arr1[i] 
+            i += 1
+        else: 
+            array[k] = arr2[j] 
+            j += 1
+        k += 1
+  
+    # Copy the remaining elements of arr1[], if there are any 
+    while i < n1: 
+        array[k] = arr1[i] 
+        i += 1
+        k += 1
+  
+    # Copy the remaining elements of arr2[], if there are any 
+    while j < n2: 
+        array[k] = arr2[j] 
+        j += 1
+        k += 1
+def partition(array,low,high): 
+    if low < high: 
+  
+       #Same as (low+high)//2, but avoids overflow for large low and high 
+       mid = (low+(high-1))//2
+  
+        # Sort first and second halves 
+        partition(array, low, mid) 
+        partition(array, mid+1, high) 
+        mergeSort(array, low, mid, high) 
+  
+  
+print("Enter Elements into array")
+array = [int(n) for n input().split()] 
+n = len(array) 
+  
+partition(array,0,n-1) 
+print ("\n\nSorted array is") 
+for i in range(n): 
+    print ("%d" %array[i])
+                  
+     #counting short
+    
+  def countingSort(arr):
+    size = len(arr)
+    output = [0] * size
+
+    # count array initialization
+    count = [0] * 10
+
+    # storing the count of each element 
+    for m in range(0, size):
+        count[arr[m]] += 1
+
+    # storing the cumulative count
+    for m in range(1, 10):
+        count[m] += count[m - 1]
+
+    # place the elements in output array after finding the index of each element of original array in count array
+    m = size - 1
+    while m >= 0:
+        output[count[arr[m]] - 1] = arr[m]
+        count[arr[m]] -= 1
+        m -= 1
+
+    for m in range(0, size):
+        arr[m] = output[m]
+
+data = [3,5,1,6,7,8,3]
+countingSort(data)
+print("Sorted Array: ")
+print(data)
+  
